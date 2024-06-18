@@ -49,11 +49,16 @@
     align-items: center;
 }
 
+.xo{
+    padding: 3px 0 0 0;
+}
+
 .xo .x{
     font-size: 2rem;
     font-family: "Varela Round", sans-serif;
     font-weight: 900;
     color: #2dc3bf;
+    padding: 3px 0 0 0;
 }
 
 .xo .o{
@@ -94,4 +99,44 @@
     border: none;
     border-radius: 5px;
     box-shadow: 0 5px #172830;
+}
+
+
+@media (max-width: 480px) {
+    .container{
+        height: 90vw;
+        width: 90vw;
+        gap: 2%;
+    }
+    
+    .box{
+        height: 32%;
+        width: 32%;
+        font-size: 4.5rem;
+    }
+
+    .menu{
+        width: 80vw;
+    }
+    
+    .xo .x{
+        font-size: 3rem;
+    }
+    
+    .xo .o{
+        font-size: 3rem;
+    }
+    
+    .turn{
+        padding: 10px 20px;
+    }
+    
+    .turn span{
+        font-size: 1.8rem;
+    }
+
+    .reset-btn{
+        padding: 10px 20px;
+        font-size: 1.4rem;
+    }
 }
