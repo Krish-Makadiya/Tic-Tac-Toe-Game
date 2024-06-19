@@ -1,6 +1,12 @@
 let boxes = document.querySelectorAll('.box');
 let chance = document.querySelector('#playerTurn');
 let resetBtn = document.querySelector('.reset-btn');
+let winner = document.querySelector('.player');
+let filter = document.querySelector('.no-filter');
+let winBanner = document.querySelector('.win-lose');
+let newGame = document.querySelectorAll('.newRound-btn');
+let tieGame = document.querySelector('.tie-match');
+let roundTaken = document.querySelector('.round-taken');
 
 let turnX = true;
 let count = 0;
@@ -31,13 +37,21 @@ boxes.forEach((box) => {
         }
         box.disabled = true;  
         count += 1;
-        if(count == 9){
-            console.log('Tie')
-        }
-        else{
-            checkWinner();
-        }
         
+        if(checkWinner()){
+            return;
+        }
+        if(count == 9){
+            tieGame.classList.add('enable');
+            newGame[1].style.backgroundColor = '#a9bec9';
+            newGame[1].style.boxShadow = '0 2px #a9bec9a5';
+            filter.classList.add('filter');
+            newGame[1].addEventListener('click', ()=>{
+                resetGame();
+                tieGame.classList.remove('enable');
+                filter.classList.remove('filter');
+            })
+        }
     });
 });
 
@@ -49,7 +63,6 @@ let checkWinner = ()=>{
         
         if(pos1.innerText != "" && pos2.innerText != "" && pos3.innerText != ""){
             if(pos1.innerText === pos2.innerText && pos2.innerText === pos3.innerText){
-                console.log(`winner is ${pos1.innerText}`);
 
                 // to change color after winning
                 if(pos1.innerText == 'X'){
@@ -60,15 +73,33 @@ let checkWinner = ()=>{
                     pos1.style.backgroundColor = '#2dc3bf';
                     pos2.style.backgroundColor = '#2dc3bf';
                     pos3.style.backgroundColor = '#2dc3bf';
+
+                    winner.innerText = 'X';
+                    winner.style.color = '#2dc3bf';
+                    roundTaken.style.color = '#f2b03e';
+                    winBanner.classList.add('enable');
+                    newGame[0].style.backgroundColor = '#2dc3bf';
+                    newGame[0].style.boxShadow = '0 2px #2dc3bfa5';
+                    filter.classList.add('filter');
+                    return true;
                 }
                 else{
                     pos1.style.color = '#263b46';
                     pos2.style.color = '#263b46';
                     pos3.style.color = '#263b46';
-
+                    
                     pos1.style.backgroundColor = '#f2b03e';
                     pos2.style.backgroundColor = '#f2b03e';
                     pos3.style.backgroundColor = '#f2b03e';
+                    
+                    winner.innerText = 'O';
+                    winner.style.color = '#f2b03e';
+                    roundTaken.style.color = '#2dc3bf';
+                    winBanner.classList.add('enable');
+                    newGame[0].style.backgroundColor = '#f2b03e';
+                    newGame[0].style.boxShadow = '0 2px #f2b03ea5';
+                    filter.classList.add('filter');
+                    return true;
                 }
 
                 // not to let any other box click when winner is found
@@ -78,13 +109,7 @@ let checkWinner = ()=>{
     }
 }
 
-let afterWin = ()=>{
-    boxes.forEach((box) => {
-        box.disabled = true;
-    })
-}
-
-resetBtn.addEventListener('click', ()=>{
+let resetGame = ()=>{
     boxes.forEach((box)=>{
         box.disabled = false;
         box.innerText = "";
@@ -93,10 +118,20 @@ resetBtn.addEventListener('click', ()=>{
         count = 0;
         box.style.backgroundColor = '#263b46'
     })
+}
+
+newGame[0].addEventListener('click', ()=>{
+    resetGame();
+    winBanner.classList.remove('enable');
+    filter.classList.remove('filter');
 })
 
+let afterWin = ()=>{
+    boxes.forEach((box) => {
+        box.disabled = true;
+    })
+}
 
-
-
-
-
+resetBtn.addEventListener('click', ()=>{
+    resetGame();
+});

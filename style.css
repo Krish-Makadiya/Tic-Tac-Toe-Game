@@ -4,6 +4,10 @@
     box-sizing: border-box;
 }
 
+body{
+    position: relative;
+}
+
 .wrapper{
     height: 100vh;
     width: 100vw;
@@ -15,6 +19,7 @@
     user-select: none;
     gap: 1rem;
     font-family: "Poppins", sans-serif;
+    position: relative;
 }
 
 .container{
@@ -102,6 +107,96 @@
 }
 
 
+
+
+.win-lose{
+    position: absolute;
+    height: 200px;
+    width: 100%;
+    top: 38vh;
+    padding: 20px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    background-color: #1e3640;
+    transition: 0.5s ease-in-out;
+    z-index: 5;
+    scale: 0;
+}
+
+.win-text{
+    color: #a9bec9;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.winner{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
+.winner span{
+    font-family: "Varela Round", sans-serif;
+    font-size: 5rem;
+    font-weight: 900;
+}
+
+.winner p{
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.newRound-btn{
+    color: #172830;
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-weight: 500;
+}
+
+.no-filter{
+    transition: 0.5s ease-in-out;
+}
+
+.filter{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: rgb(0, 0, 0);
+    opacity: 0.6;
+}
+
+.tie-match{
+    position: absolute;
+    height: 200px;
+    width: 100%;
+    top: 38vh;
+    padding: 20px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    background-color: #1e3640;
+    transition: 0.5s ease-in-out;
+    z-index: 5;
+    scale: 0;
+}
+
+.tie p{
+    color: #a9bec9;
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.enable{
+    scale: 1;
+}
+
+
 @media (max-width: 480px) {
     .container{
         height: 90vw;
@@ -138,5 +233,25 @@
     .reset-btn{
         padding: 10px 20px;
         font-size: 1.4rem;
+    }
+
+    .win-lose{
+        top: 43%;
+    }
+    
+    .winner{
+        gap: 20px;
+    }
+    
+    .winner span{
+        font-size: 4rem;
+    }
+    
+    .winner p{
+        font-size: 1.6rem;
+    }
+
+    .tie p{
+        font-size: 1.6rem;
     }
 }
